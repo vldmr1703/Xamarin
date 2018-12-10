@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:App1"
+             x:Class="App1.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:InvertBoolenConverter x:Key="cnvInvert"></local:InvertBoolenConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <ListView
+            HasUnevenRows="True"
+            ItemsSource="{Binding Beers}"
+            x:Name="list"
+            >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="5">
+                            <Label Text="{Binding Name}" FontSize="Large" HorizontalOptions="Center"/>
+                            <Image Margin="3">
+                                <Image.Source>
+                                    <UriImageSource Uri="{Binding ImageUrl}"/>
+                                </Image.Source>
+                            </Image>
+                            <StackLayout Padding="10">
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Description, Converter={StaticResource cnvInvert}}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label HorizontalOptions="Center" Font="Bold,14">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Alcohol by volume: "/>
+                                            <Span Text="{Binding Abv}" />
+                                            <Span Text="%"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.Page1">
+    <StackLayout>
+        <ListView
+            HasUnevenRows="True"
+            ItemsSource="{Binding Beer}"
+            x:Name="list">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="5">
+                            <Label Text="{Binding Name}" FontSize="Large" HorizontalOptions="Center"/>
+                            <Image Margin="3" HorizontalOptions="Start">
+                                <Image.Source>
+                                    <UriImageSource Uri="{Binding ImageUrl}"/>
+                                </Image.Source>
+                            </Image>
+                            <StackLayout Padding="10">
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Description: "/>
+                                            <Span Text="{Binding Description}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label HorizontalOptions="Center" Font="Bold,14">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Alcohol by volume: "/>
+                                            <Span Text="{Binding Abv}" />
+                                            <Span Text="%"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
